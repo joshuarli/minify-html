@@ -17,12 +17,17 @@ maintenance = { status = "actively-developed" }
 [dependencies]
 ahash = "0.8"
 aho-corasick = "1.1"
-lightningcss = "1.0.0-alpha.68"
+lightningcss = { version = "1.0.0-alpha.68", optional = true }
 memchr = "2"
 minify-html-common = { version = "0.0.3", path = "../minify-html-common" }
 once_cell = "1.21"
-oxc_allocator = "0.95"
-oxc_codegen = "0.95"
-oxc_minifier = "0.95"
-oxc_parser = "0.95"
-oxc_span = "0.95"
+oxc_allocator = { version = "0.95", optional = true }
+oxc_codegen = { version = "0.95", optional = true }
+oxc_minifier = { version = "0.95", optional = true }
+oxc_parser = { version = "0.95", optional = true }
+oxc_span = { version = "0.95", optional = true }
+
+[features]
+default = ["lightningcss", "minify-js"]
+lightningcss = ["dep:lightningcss"]
+minify-js = ["dep:oxc_allocator", "dep:oxc_codegen", "dep:oxc_minifier", "dep:oxc_parser", "dep:oxc_span"]
